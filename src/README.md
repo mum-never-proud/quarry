@@ -1,2 +1,0 @@
-# quarry
-quarry (query array)
