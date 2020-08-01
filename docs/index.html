@@ -67,7 +67,7 @@
         <pre>
           <code class="javascript">
             $q(records) // array of objects
-              .select([, ...fields]); // select fields for the result or selects all fields when no argument is supplied
+              .select([, ...fields]); // selects the given field(s) or all the fields when no arguments are provided
               .where(field, assert, value) // filters record
               .andWhere(field, assert, value) // filters record with more than one condition, AND operator
               .orWhere(field, assert, value) // filters record with more than one condition, OR operator
