@@ -1,0 +1,158 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>quarry</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/solarized-dark.min.css"
+    rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300&display=swap" rel="stylesheet" />
+  <style>
+    html,
+    body {
+      font-family: "Fira Code";
+      background-color: #121212;
+      color: #FB3;
+    }
+
+    h1,
+    h3,
+    h6 {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 32px;
+    }
+
+    h3 {
+      font-size: 24px;
+    }
+
+    .hljs {
+      background: #222831;
+    }
+
+    .hljs-number,
+    .hljs-string {
+      color: #FB3;
+    }
+
+    footer {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <p class="display-4 text-center mt-3">quarry</p>
+        <p class="text-center font-italic mt-3">Querying got Simpler</p>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <p class="codepen" data-height="490" data-theme-id="dark" data-default-tab="js,result" data-user="mum-never-proud" data-slug-hash="eYJqeQp" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="quarry-demo">
+          <span>See the Pen <a href="https://codepen.io/mum-never-proud/pen/eYJqeQp">
+          quarry-demo</a> by mum-never-proud (<a href="https://codepen.io/mum-never-proud">@mum-never-proud</a>)
+          on <a href="https://codepen.io">CodePen</a>.</span>
+        </p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12">
+        <p class="h3"><u>Syntax</u>:</p>
+        <pre>
+          <code class="javascript">
+            $q(records) // array of objects
+              .select([, ...fields]); // select fields for the result or selects all fields when no argument is supplied
+              .where(field, assert, value) // filters record
+              .andWhere(field, assert, value) // filters record with more than one condition, AND operator
+              .orWhere(field, assert, value) // filters record with more than one condition, OR operator
+              .get() // get array of filtered records
+          </code>
+        </pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p class="h3"><u>Supported Asserts</u>:</p>
+        <ul class="mt-3">
+          <li>equals</li>
+          <li>lessThan</li>
+          <li>greaterThan</li>
+          <li>lessThanOrEqualTo</li>
+          <li>greaterThanOrEqualTo</li>
+          <li>includes</li>
+          <li>excludes</li>
+          <li>grep (RegExp)</li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <pre>
+          <code class="javascript">
+            const $db = $q(records);
+
+            $db.select()
+              .where('id', 'equals', 1)
+              .get(); // filter record(s) where id is 1
+
+            $db.select()
+              .where('name', 'grep', /blake/gi)
+              .get(); // filter record(s) where name contains blake
+          </code>
+        </pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <p class="h3"><u>Aggregate methods</u>:</p>
+        <ul class="mt-3">
+          <li>first - get first record</li>
+          <li>last - get last record</li>
+          <li>nth - get n<sup>th</sup> record</li>
+          <li>sum - sum the given field</li>
+          <li>avg - average of the given field</li>
+          <li>count - count the number of result</li>
+          <li>all - get all records (unfiltered)</li>
+          <li>get - get filtered array of records</li>
+        </ul>
+      </div>
+      <div class="col-12">
+        <pre>
+          <code class="javascript">
+            const $db = $q(records);
+
+            $db.select()
+              .where('age', 'lessThanOrEqualTo', 18)
+              .sum('age'); // total age of filtered records
+
+            $db.select()
+              .where('age', 'lessThanOrEqualTo', 18)
+              .avg('age'); // avg age of filtered records
+          </code>
+        </pre>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <footer>
+          <p class="text-center font-italic">made with much ❤️</p>
+        </footer>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"
+    type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/javascript.min.js"
+    type="text/javascript"></script>
+  <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+  <script>
+    ;(function () {
+      hljs.initHighlightingOnLoad();
+    })();
+  </script>
+</body>
+</html>
